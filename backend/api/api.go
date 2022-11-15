@@ -9,5 +9,5 @@ type API struct {
 }
 
 func (api *API) HomeHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("This is the home handler in construction")
+	fmt.Println("This is the API basic handler!")
 }

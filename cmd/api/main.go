@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -12,12 +11,15 @@ import (
 	"github.com/Error404UsernameNotFound/sanva/backend/api"
 )
 
+const port string = ":8080"
+
 func main() {
-	fmt.Println("Service started")
+	log.Printf("Api service started in port: %s", port)
 
 	router := api.NewRouter()
 
 	srv := &http.Server{
+		Addr: port,
 		// Good practice to set timeouts to avoid Slowloris attacks.
 		WriteTimeout: time.Second * 15,
 		ReadTimeout:  time.Second * 15,
@@ -46,5 +48,5 @@ func main() {
 	// until the timeout deadline
 	srv.Shutdown(ctx)
 
-	fmt.Println("Service ended")
+	log.Println("Api service ended")
 }
